@@ -33,5 +33,10 @@ export interface SessionData {
   recommendation: MovieRecommendation;
 }
 
+export interface User {
+  name: string;
+  isLoggedIn: boolean;
+}
+
 export type ThemeMode = 'light' | 'dark';
-export type CurrentScreen = 'welcome' | 'moodcheck' | 'recommendations' | 'loading';
+export type CurrentScreen = 'login' | 'welcome' | 'moodcheck' | 'recommendations' | 'loading';

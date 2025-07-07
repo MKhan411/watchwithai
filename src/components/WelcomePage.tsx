@@ -1,11 +1,12 @@
 import React from 'react';
-import { Play, Sparkles, Moon, Sun } from 'lucide-react';
+import { Play, Sparkles, Moon, Sun, LogOut } from 'lucide-react';
 import { ThemeMode } from '../types';
 
 interface WelcomePageProps {
   userName: string;
   onStartMoodCheck: () => void;
   onSurpriseMe: () => void;
+  onLogout: () => void;
   themeMode: ThemeMode;
   onToggleTheme: () => void;
 }
@@ -14,6 +15,7 @@ const WelcomePage: React.FC<WelcomePageProps> = ({
   userName,
   onStartMoodCheck,
   onSurpriseMe,
+  onLogout,
   themeMode,
   onToggleTheme
 }) => {
@@ -23,8 +25,8 @@ const WelcomePage: React.FC<WelcomePageProps> = ({
         ? 'bg-black text-white' 
         : 'bg-white text-gray-900'
     }`}>
-      {/* Theme Toggle */}
-      <div className="absolute top-8 right-8 z-10">
+      {/* Header with Theme Toggle and Logout */}
+      <div className="absolute top-8 right-8 z-10 flex items-center gap-4">
         <button
           onClick={onToggleTheme}
           className={`p-3 rounded-full transition-all duration-200 hover:scale-105 ${
@@ -39,6 +41,19 @@ const WelcomePage: React.FC<WelcomePageProps> = ({
           ) : (
             <Moon className="w-5 h-5 text-gray-700" />
           )}
+        </button>
+
+        <button
+          onClick={onLogout}
+          className={`flex items-center gap-2 px-4 py-3 text-sm font-medium transition-all duration-200 hover:scale-105 ${
+            themeMode === 'dark'
+              ? 'bg-gray-900 hover:bg-gray-800 border border-gray-800 text-gray-300'
+              : 'bg-gray-50 hover:bg-gray-100 border border-gray-200 text-gray-700'
+          }`}
+          aria-label="Logout"
+        >
+          <LogOut className="w-4 h-4" />
+          Logout
         </button>
       </div>
 
@@ -57,7 +72,7 @@ const WelcomePage: React.FC<WelcomePageProps> = ({
               <p className={`text-2xl md:text-3xl font-light ${
                 themeMode === 'dark' ? 'text-gray-300' : 'text-gray-600'
               }`}>
-                Hi, {userName}
+                Hi, {userName}! 👋
               </p>
               
               <p className={`text-lg md:text-xl font-light italic ${
